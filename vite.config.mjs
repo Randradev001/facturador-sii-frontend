@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import jsconfigPaths from 'vite-jsconfig-paths';
+import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
 
 export default defineConfig(({ mode }) => {
@@ -31,7 +32,34 @@ export default defineConfig(({ mode }) => {
         // Add more aliases as needed
       }
     },
-    plugins: [react(), jsconfigPaths()],
+    plugins: [react(),
+       jsconfigPaths(),
+       VitePWA({  // congigure PWA plugin
+            registerType: 'autoUpdate',
+            manifest: {
+              name: 'Hotel Maintenance App',
+              short_name: 'HotelApp',
+              description: 'Hotel maintenance and work orders system',
+              theme_color: '#0f172a',
+              background_color: '#ffffff',
+              display: 'standalone',
+              start_url: '/free/',
+              scope: '/free/',
+              icons: [
+                {
+                  src: 'icon-192.png',
+                  sizes: '192x192',
+                  type: 'image/png'
+                },
+                {
+                  src: 'icon-512.png',
+                  sizes: '512x512',
+                  type: 'image/png'
+                }
+              ]
+            }
+          })
+      ],
     build: {
       chunkSizeWarningLimit: 1000,
       sourcemap: true,

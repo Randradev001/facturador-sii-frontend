@@ -11,17 +11,17 @@ const icons = {
 
 const support = {
   id: 'support',
-  title: 'Support',
+  title: 'Ingresos',
   type: 'group',
   children: [
     {
       id: 'sample-page',
-      title: 'Sample Page',
+      title: 'Empresas',
       type: 'item',
-      url: '/sample-page',
+      url: '/empresas',
       icon: icons.ChromeOutlined
     },
-    {
+  /*  {
       id: 'documentation',
       title: 'Documentation',
       type: 'item',
@@ -29,7 +29,7 @@ const support = {
       icon: icons.QuestionOutlined,
       external: true,
       target: true
-    }
+    } */
   ]
 };
 
