@@ -8,7 +8,8 @@ import Stack from '@mui/material/Stack';
 import MainCard from 'components/MainCard';
 import FactCompaniesGrid from './empresasGrid';
 import FactCompanyFilters from './FactCompanyFilters';
-
+import { getComunas } from '../../api/siiApi';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 // ==============================|| EMPRESAS PAGE ||============================== //
 
 const Empresas = () => {
@@ -17,21 +18,15 @@ const Empresas = () => {
     nombre: '',
     comunaId: ''
   });
-
-  const comunas = [
-    {
-      Id: 1,
-      ComNombre: 'Santiago'
-    },
-    {
-      Id: 2,
-      ComNombre: 'Rancagua'
-    },
-    {
-      Id: 3,
-      ComNombre: 'Machalí'
-    }
-  ];
+  const {
+    data: comunas = [],
+    isLoading: loadingComunas,
+    isError: errorComunas
+    } = useQuery({
+    queryKey: ['comunas'],
+    queryFn: getComunas
+    });
+  
 
   const handleSearch = (newFilters) => {
     setFilters(newFilters);
